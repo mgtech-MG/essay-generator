@@ -16,32 +16,28 @@ const configuration = new Configuration({
       return;
     }
 
-    //get the image prompt
-    const imagePrompt = req.body.imageprompt  || '';
-    if (imagePrompt.trim().length === 0) {
+    //get the essay prompt
+    const essayPrompt = req.body.essayprompt  || '';
+    if (essayPrompt.trim().length === 0) {
         res.status(400).json({
             error: {
-                message: "Please enter a valid image prompt"
+                message: "Please enter a valid essay prompt"
             }
         });
         return;
     }
 
     try {
-        
-        //create image with open api
-        const response = await openai.createImage({
-            prompt: `${imagePrompt}`,
-            n: 1,
-            size: "1024x1024",
+          //create a completion with open API
+
+          const response = await openai.createCompletion({
+            model: "text-davinci-003",
+            prompt: `In ${200} or less generate an essay about ${essayPrompt}`,
+            max_tokens: 1000,
+            temperature: 0.2,
           });
-          const image_url = response.data.data[0].url;
-
-          console.log(image_url)
-        
-          //send the image back
-
-          res.status(200).json({imageResult: image_url})
+          //send the essay back
+          res.status(200).json({ result: response.data.choices[0].text });
 
     } catch (error) {
         if (error.response) {

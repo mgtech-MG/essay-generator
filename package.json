@@ -1,9 +1,9 @@
 {
-  "name": "image-generator",
+  "name": "essay-generator",
   "version": "0.2.0",
-  "description": "COF Image Generator",
+  "description": "COF Essay Generator",
   "main": "index.js",
-  "repository": "https://github.com/CorridorOfFameAcademy/image-generator.git",
+  "repository": "https://github.com/CorridorOfFameAcademy/essay-generator.git",
   "author": "Martin G <martin.granger@martingtechnologies.com>",
   "license": "MIT",
   "private": true,
